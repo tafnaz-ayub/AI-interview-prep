@@ -1,68 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --font-display: "Urbanist", sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary: #6366F1; /* indigo-500 */
+  --color-accent: #8B5CF6; /* violet-500 */
+  --color-highlight: #06B6D4; /* cyan-500 */
+  --color-bg-dark: #0F172A; /* slate-900 */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  font-family: var(--font-display);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+  color: #E5E7EB; /* gray-200 */
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(139, 92, 246, 0.6); /* violet thumb */
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Animate text with a shine effect */
+@keyframes text-shine {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.animate-text-shine {
+  animation: text-shine 3s ease-in-out infinite alternate;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Blobs with subtle dark glow */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -60px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+@keyframes blob2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-40px, 60px) scale(1.05); }
+  66% { transform: translate(20px, 40px) scale(0.95); }
+}
+@keyframes blob3 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(20px, 140px) scale(1.15); }
+  66% { transform: translate(-30px, -30px) scale(0.8); }
+}
+
+/* Tailwind @apply classes with dark palette */
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm text-white bg-slate-800/60 rounded px-4 py-3 mb-4 mt-3 border border-slate-600 outline-none focus-within:border-indigo-400;
+}
+.btn-primary {
+  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white 
+  bg-gradient-to-r from-indigo-600 to-violet-600 
+  shadow-lg shadow-indigo-900/40 p-[10px] rounded-md my-1 
+  hover:opacity-90 hover:shadow-cyan-500/30 cursor-pointer transition-all;
+}
+.btn-small {
+  @apply flex items-center justify-center gap-3 
+  bg-gradient-to-r from-cyan-400 to-blue-500 
+  text-sm font-semibold text-white px-7 py-2 rounded-lg 
+  hover:opacity-90 hover:shadow-lg hover:shadow-cyan-400/30 
+  transition-colors cursor-pointer;
 }
