@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LuSparkles } from 'react-icons/lu'
 import hero_img from '../assets/hero_img.png'
@@ -6,7 +6,10 @@ import { APP_FEATURES } from '../utils/data'
 import Modal from '../components/Modal'
 import Login from './Auth/Login'
 import SignUp from './Auth/SignUp'
+import { UserContext } from '../context/userContext'
+import ProfileInfoCard from '../components/Cards/ProfileInfoCard'
 const LandingPage = () => {
+  const {user} = useContext(UserContext);
   const navigate = useNavigate()
   const [openAuthModel, setOpenAuthModel] = useState(false)
   const [currentPage, setCurrentPage] = useState("login")
@@ -27,12 +30,12 @@ const LandingPage = () => {
           {/* Header */}
           <header className="flex justify-between items-center w-full max-w-5xl mb-20">
             <div className="text-xl font-bold text-white">MindHire AI</div>
-            <button
+            {user ? (<ProfileInfoCard/>):(<button
               className="bg-gradient-to-r from-indigo-500 to-violet-500 text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:opacity-90 border border-white/20 transition-colors"
               onClick={() => setOpenAuthModel(true)}
             >
               Login / Sign Up
-            </button>
+            </button>)}
           </header>
 
           {/* Hero Section */}
@@ -127,7 +130,7 @@ const LandingPage = () => {
       <Modal
   isOpen={openAuthModel}
   onClose={() => {
-    setOpenAuthModal(false);
+    setOpenAuthModel(false);
     setCurrentPage("login");
   }}
   hideHeader
