@@ -18,7 +18,7 @@ const LandingPage = () => {
     // Add your CTA navigation/logic here
   }
 
-  return (
+  return (user && (
     <>
       <div className="relative w-full min-h-screen bg-[#0F172A] text-white">
         {/* Background Glow Effects */}
@@ -145,7 +145,7 @@ const LandingPage = () => {
   </div>
 </Modal>
     </>
-  )
+  ))
 }
 
 export default LandingPage
